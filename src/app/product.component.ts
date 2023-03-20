@@ -25,4 +25,22 @@ export class ProductComponent {
             "text-center text-white": product?.name == "Samsung S6"
         }
     }
+
+    getColor(id: number): Object {
+        let product = this.model.getProductById(id);
+        let color = product?.price && product.price <= 1000 ? "green" : "red";
+        return { color: color };
+    }
+
+    onSubmit($event: any) {
+        $event.stopPropagation();
+        console.log("button was clicked");
+        console.log($event);
+    }
+
+    onDivClicked() {
+        console.log('div was clicked');
+    }
+
+    
 }
