@@ -5,52 +5,40 @@ import { ProductRepository } from "./repository.model";
 @Component({
     selector: "app",
     template: `
-        <input [(ngModel)]="email" (keyup.enter)= "onKeyUp()"/>
-        <br>
-        <span>{{ email }}</span>
+        <h4> Lower-Upper-Title CasePipe </h4>
+        <p> {{ title }}</p>
+        <p> {{ title | lowercase }}</p>
+        <p> {{ title | uppercase }}</p>
+        <p> {{ title | titlecase }}</p>
+
+        <h4> Date Pipe</h4>
+        <p> {{ today }}</p>
+        <p> {{ today | date }}</p>
+        <p> {{ today | date : "fullDate" }}</p>
+        <p> {{ today | date : "medium" }}</p>
+        <p> {{ today | date : "shortTime" }}</p>
+        <p> {{ today | date : "h:mm:ss" }}</p>
+
+        <h4> Decimal Pipe</h4>
+        <p> {{ students}} </p>
+        <p> {{ students | number }}</p>
+        <p> {{ price | number : "1.1-1" }}</p>
+
+        <h4> Currency Pipe</h4>
+        <p> {{ price | currency : "EUR"}}</p>
+
+        <h4> Percent Pipe</h4>
+        <p> {{ completed | percent }}</p>
+        <p> {{ completed | percent : "2.2-2"}}</p>
         `,
     styleUrls: ["product.component.css"]
 
 })
 export class ProductComponent {
-    model: ProductRepository = new ProductRepository();
-    disabled = false;
-    email = "email@samed.com";
-
-    getClasses(id: number): string {
-       let product = this.model.getProductById(id);
-       return (product?.price && product.price <= 1000 ? "bg-info":"bg-secondary") + " m-2 p-2 text-white";       
-    }
-
-    getClassMap(id: number): Object {
-        let product = this.model.getProductById(id);
-        return {
-            "bg-info": product?.price && product.price <= 1000,
-            "bg-secondary": product?.price && product.price > 1000,
-            "text-center text-white": product?.name == "Samsung S6"
-        }
-    }
-
-    getColor(id: number): Object {
-        let product = this.model.getProductById(id);
-        let color = product?.price && product.price <= 1000 ? "green" : "red";
-        return { color: color };
-    }
-
-    onSubmit($event: any) {
-        $event.stopPropagation();
-        console.log("button was clicked");
-        console.log($event);
-    }
-
-    onDivClicked() {
-        console.log('div was clicked');
-    }
-
-
-    onKeyUp() {        
-        console.log(this.email);        
-    }
-
+   today: number = Date.now();
+   title: string = "Angular Kursu";
+   students: number = 21536;
+   price: number = 395.9756;
+   completed: number = 0.26;
     
 }
