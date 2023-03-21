@@ -4,13 +4,18 @@ import { ProductRepository } from "./repository.model";
 
 @Component({
     selector: "app",
-    templateUrl: "product.component.html",
+    template: `
+        <input [(ngModel)]="email" (keyup.enter)= "onKeyUp()"/>
+        <br>
+        <span>{{ email }}</span>
+        `,
     styleUrls: ["product.component.css"]
 
 })
 export class ProductComponent {
     model: ProductRepository = new ProductRepository();
     disabled = false;
+    email = "email@samed.com";
 
     getClasses(id: number): string {
        let product = this.model.getProductById(id);
@@ -42,8 +47,9 @@ export class ProductComponent {
         console.log('div was clicked');
     }
 
-    onKeyUp(email: any) {        
-        console.log(email);        
+
+    onKeyUp() {        
+        console.log(this.email);        
     }
 
     
