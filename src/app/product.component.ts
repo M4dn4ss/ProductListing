@@ -11,6 +11,16 @@ import { ProductRepository } from "./repository.model";
 export class ProductComponent {
    model: ProductRepository = new ProductRepository();
 
-  
+  addProduct() {
+    this.model.addProduct(new Product(6, "Samsung S10","good phone","1.jpeg",5000));
+  }
+
+  deleteProduct(product: Product) {
+    this.model.deleteProduct(product);
+  }
+
+  updateProduct(product: Product) {
+    product.name = "updated";
+  }
     
 }
