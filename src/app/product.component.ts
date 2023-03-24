@@ -10,17 +10,18 @@ import { ProductRepository } from "./repository.model";
 })
 export class ProductComponent {
    model: ProductRepository = new ProductRepository();
+   newProduct: Product = new Product();
 
-  addProduct() {
-    this.model.addProduct(new Product(6, "Samsung S10","good phone","1.jpeg",5000));
+   get jsonProduct() {
+    return JSON.stringify(this.newProduct);
+   }
+
+  addProduct(p: Product) {
+    console.log("New Product: " + this.jsonProduct);
   }
 
-  deleteProduct(product: Product) {
-    this.model.deleteProduct(product);
-  }
-
-  updateProduct(product: Product) {
-    product.name = "updated";
+  log(m: any) {
+    console.log(m);
   }
     
 }
