@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Product } from '../product.model';
 import { ProductRepository } from './../repository.model';
 
 @Component({
@@ -9,9 +10,17 @@ import { ProductRepository } from './../repository.model';
 export class AdminProductsComponent {
   products: any;
   model: ProductRepository;
-  selectedProduct: string;
+  selectedProduct: Product;
   constructor() {
     this.model = new ProductRepository();
     this.products = this.model.getProducts();
+  }
+
+  getSelected(product: Product): boolean {
+    return product == this.selectedProduct;
+  }
+
+  editProduct(product: Product) {
+    this.selectedProduct = product;
   }
 }
