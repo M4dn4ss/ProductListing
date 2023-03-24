@@ -23,4 +23,13 @@ export class AdminProductsComponent {
   editProduct(product: Product) {
     this.selectedProduct = product;
   }
+
+  SaveChanges(name: any, description: any, price: any, imageUrl: any) {
+    const p = this.model.getProductById(this.selectedProduct.id);
+    p.name = name;
+    p.description = description;
+    p.price = price;
+    p.imageUrl = imageUrl;
+    this.selectedProduct = null;
+  }
 }
