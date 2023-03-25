@@ -20,8 +20,6 @@ export class ProductComponent {
     console.log("New Product: " + this.jsonProduct);
   }
 
-  log(m: any) {
-    console.log(m);
-  }
+  
     
 }
