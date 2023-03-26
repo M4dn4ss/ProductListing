@@ -3,6 +3,14 @@
         <div class="col-8">
             <div class="m-3">
                 <form #form="ngForm" (ngSubmit)="submitForm(form)">
+                    <div class="bg-danger text-white p-3 my-2" *ngIf="formSubmitted && form.invalid">
+                        An error has occurred. Check your information.
+                        <ul>
+                            <li *ngFor="let error of getFormValidationErrors(form)">
+                                {{ error }}
+                            </li>
+                        </ul>
+                    </div>
                     <div class="bg-info text-white m-2 p-2">
                         {{ jsonProduct }}
                     </div>
@@ -10,10 +18,12 @@
                     <div class="form-group">
                         <label>Name</label>
                         <input required minlength="3" maxlength="10" pattern="^[A-Za-z ]+$" [(ngModel)]="newProduct.name" name="name" #name="ngModel" type="text" class="form-control">
-                        <div class="alert alert-danger" *ngIf="!name.valid && name.touched">
-                            <p *ngFor="let error of getValidationErrors(name)">
-                                {{ error }}
-                            </p>
+                        <div class="alert alert-danger" *ngIf="(formSubmitted || name.dirty) && name.invalid">
+                            <ul>
+                                <li *ngFor="let error of getValidationErrors(name)">
+                                    {{ error }}
+                                </li>
+                            </ul>
                         </div>
                     </div>
 

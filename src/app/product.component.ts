@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { NgForm } from "@angular/forms";
 import { Product } from "./product.model";
 import { ProductRepository } from "./repository.model";
 
@@ -20,8 +21,23 @@ export class ProductComponent {
     console.log("New Product: " + this.jsonProduct);
   }
 
-  submitForm(form: any) {
+  formSubmitted: boolean = false;
+
+  submitForm(form: NgForm) {
     console.log(form);
+    this.formSubmitted = true;
+    if(form.valid) {
+      this.addProduct(this.newProduct);
+      this.newProduct = new Product();
+      form.reset();
+      this.formSubmitted = false;
+    }
+  }
+
+  getFormValidationErrors(form: NgForm): string[] {
+    let messages: string[] = [];
+
+    return messages;
   }
 
   getValidationErrors(state: any) {
