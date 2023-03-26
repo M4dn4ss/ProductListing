@@ -20,7 +20,7 @@
                         <input required minlength="3" maxlength="10" pattern="^[A-Za-z ]+$" [(ngModel)]="newProduct.name" name="name" #name="ngModel" type="text" class="form-control">
                         <div class="alert alert-danger" *ngIf="(formSubmitted || name.dirty) && name.invalid">
                             <ul>
-                                <li *ngFor="let error of getValidationErrors(name)">
+                                <li *ngFor="let error of getValidationErrors(name,null)">
                                     {{ error }}
                                 </li>
                             </ul>
@@ -29,25 +29,37 @@
 
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea required [(ngModel)]="newProduct.description" name="pDescription" #description="ngModel" type="text" class="form-control"></textarea>
-                        <div class="alert alert-danger" *ngIf="!description.valid && description.touched">
-                            Description is required.
+                        <textarea required [(ngModel)]="newProduct.description" name="description" #description="ngModel" type="text" class="form-control"></textarea>
+                        <div class="alert alert-danger" *ngIf="(formSubmitted || description.dirty) && description.invalid">
+                            <ul>
+                                <li *ngFor="let error of getValidationErrors(description,null)">
+                                    {{ error }}
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>Price</label>
-                        <input required [(ngModel)]="newProduct.price" name="pPrice" #price="ngModel" type="text" class="form-control">
-                        <div class="alert alert-danger" *ngIf="!price.valid && price.touched">
-                            Price is required.
+                        <input required [(ngModel)]="newProduct.price" name="price" #price="ngModel" type="text" class="form-control">
+                        <div class="alert alert-danger" *ngIf="(formSubmitted || price.dirty) && price.invalid">
+                            <ul>
+                                <li *ngFor="let error of getValidationErrors(price,null)">
+                                    {{ error }}
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>Image Url</label>
-                        <input required [(ngModel)]="newProduct.imageUrl" name="pImageUrl" #imageUrl="ngModel" type="text" class="form-control">
-                        <div class="alert alert-danger" *ngIf="!imageUrl.valid && imageUrl.touched">
-                            Image is required.
+                        <input required [(ngModel)]="newProduct.imageUrl" name="imageUrl" #imageUrl="ngModel" type="text" class="form-control">
+                        <div class="alert alert-danger" *ngIf="(formSubmitted || imageUrl.dirty) && imageUrl.invalid">
+                            <ul>
+                                <li *ngFor="let error of getValidationErrors(imageUrl,null)">
+                                    {{ error }}
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
