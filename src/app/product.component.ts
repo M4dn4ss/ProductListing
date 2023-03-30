@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
+import { ImageValidators } from "./image.validators";
 import { Product } from "./product.model";
 import { ProductRepository } from "./repository.model";
 
@@ -11,14 +12,21 @@ import { ProductRepository } from "./repository.model";
 })
 export class ProductComponent {
   productForm = new FormGroup({
-    name : new FormControl('', [Validators.required,Validators.minLength(5)]),  
+    name : new FormControl('', [Validators.required,Validators.minLength(5),Validators.maxLength(20)]),  
     description : new FormControl('', Validators.required),
     price : new FormControl('', Validators.required),
-    imageUrl : new FormControl('', Validators.required)
+    imageUrl : new FormControl('', [
+      Validators.required,
+      ImageValidators.isValidExtension
+    ])
   })  
 
   get name() {
     return this.productForm.get('name');
+  }
+
+  get imageUrl() {
+    return this.productForm.get('imageUrl');
   }
 
   onSubmit() {

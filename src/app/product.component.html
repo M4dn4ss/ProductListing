@@ -3,7 +3,11 @@
         <label>Name</label>
         <input class="form-control" formControlName="name">
         <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
-            Name is required.
+            <ul>
+                <li *ngIf="name.errors['required']">Name is required.</li>
+                <li *ngIf="name.errors['minlength']">Min. {{ name.errors['minlength'].requiredLength}} characters</li>
+                <li *ngIf="name.errors['maxlength']">Max. {{ name.errors['maxlength'].requiredLength}} characters</li>
+            </ul>
         </div>
     </div>
     
@@ -20,6 +24,12 @@
     <div class="form-group">
         <label>Image Url</label>
         <input class="form-control" formControlName="imageUrl">
+        <div *ngIf="imageUrl.touched && imageUrl.invalid" class="alert alert-danger">
+            <ul>
+                <li *ngIf="imageUrl.errors['required']">Name is required.</li>
+                <li *ngIf="imageUrl.errors['wrongExtension']">Wrong Extension</li>
+            </ul>
+        </div>
     </div>
 
     <button type="submit" (click)="updateProduct()" class="btn btn-primary">Submit</button>
